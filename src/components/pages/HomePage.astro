@@ -1,0 +1,168 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { t, getLocalizedPath } from "../../i18n/translations";
+import type { Lang } from "../../i18n/translations";
+import { getCollection } from "astro:content";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+
+const allNews = await getCollection("news");
+const newsItems = allNews
+  .filter((n) => n.data.lang === lang)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 3);
+
+const solutions = [
+  {
+    title: t(lang, "services.blockchain.title"),
+    body: t(lang, "services.blockchain.body"),
+    icon: "M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101",
+  },
+  {
+    title: t(lang, "services.dx.title"),
+    body: t(lang, "services.dx.body"),
+    icon: "M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z",
+  },
+  {
+    title: t(lang, "services.education.title"),
+    body: t(lang, "services.education.body"),
+    icon: "M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253",
+  },
+];
+---
+
+<BaseLayout title={lang === "ja" ? "TrainBit 合同会社" : "TrainBit LLC"} lang={lang}>
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden bg-gradient-to-br from-primary-50 via-white to-accent-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-36">
+      <div class="max-w-3xl">
+        <p class="text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-4">
+          {t(lang, "hero.sub")}
+        </p>
+        <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white leading-tight mb-8">
+          {t(lang, "hero.main")}
+        </h1>
+        <div class="flex flex-wrap gap-4">
+          <a
+            href={getLocalizedPath("/services", lang)}
+            class="inline-flex items-center px-6 py-3 rounded-full bg-primary-500 text-white font-medium hover:bg-primary-600 transition-colors shadow-lg shadow-primary-500/25"
+          >
+            {t(lang, "hero.cta.services")}
+          </a>
+          <a
+            href={getLocalizedPath("/contact", lang)}
+            class="inline-flex items-center px-6 py-3 rounded-full border-2 border-primary-500 text-primary-500 font-medium hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-colors"
+          >
+            {t(lang, "hero.cta.contact")}
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-primary-100/30 dark:from-primary-900/10 to-transparent pointer-events-none"></div>
+  </section>
+
+  <!-- Compact Products Section -->
+  <section class="py-16 md:py-20 bg-white dark:bg-gray-800/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between mb-8">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
+          {t(lang, "services.products.title")}
+        </h2>
+        <a
+          href={getLocalizedPath("/services", lang)}
+          class="text-sm font-medium text-primary-500 hover:text-primary-600 transition-colors"
+        >
+          {t(lang, "common.learnMore")} →
+        </a>
+      </div>
+
+      <div class="grid gap-6 md:grid-cols-2 mb-12">
+        <!-- DeML OS compact -->
+        <a href="https://deml.space/" target="_blank" rel="noopener noreferrer" class="group flex items-start gap-4 p-5 rounded-xl bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700 hover:border-primary-300 dark:hover:border-primary-700 transition-all">
+          <span class="text-3xl shrink-0">🧠</span>
+          <div class="min-w-0">
+            <div class="flex items-center gap-2 mb-1">
+              <h3 class="font-bold text-gray-900 dark:text-white group-hover:text-primary-500 transition-colors">{t(lang, "services.deml.name")}</h3>
+              <span class="text-[10px] font-medium px-2 py-0.5 rounded-full bg-accent-500 text-white">{t(lang, "services.deml.stage")}</span>
+            </div>
+            <p class="text-sm text-gray-600 dark:text-gray-400 line-clamp-2">{t(lang, "services.deml.summary")}</p>
+          </div>
+        </a>
+
+        <!-- zkDaily compact -->
+        <a href="https://hints.plonk.pro/" target="_blank" rel="noopener noreferrer" class="group flex items-start gap-4 p-5 rounded-xl bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700 hover:border-primary-300 dark:hover:border-primary-700 transition-all">
+          <span class="text-3xl shrink-0">📰</span>
+          <div class="min-w-0">
+            <h3 class="font-bold text-gray-900 dark:text-white mb-1 group-hover:text-primary-500 transition-colors">{t(lang, "services.zkdaily.name")}</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400 line-clamp-2">{t(lang, "services.zkdaily.summary")}</p>
+          </div>
+        </a>
+      </div>
+
+      <!-- Compact Solutions -->
+      <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4">
+        {t(lang, "services.solutions.title")}
+      </h3>
+      <div class="grid gap-4 md:grid-cols-3">
+        {solutions.map((item) => (
+          <div class="p-4 rounded-lg bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700">
+            <div class="w-8 h-8 rounded-md bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center mb-3">
+              <svg class="w-4 h-4 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d={item.icon} />
+              </svg>
+            </div>
+            <h4 class="font-semibold text-sm text-gray-900 dark:text-white mb-1">{item.title}</h4>
+            <p class="text-xs text-gray-600 dark:text-gray-400 line-clamp-2">{item.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Latest News Section -->
+  {newsItems.length > 0 && (
+    <section class="py-16 md:py-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between mb-8">
+          <h2 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
+            {t(lang, "news.latestNews")}
+          </h2>
+          <a
+            href={getLocalizedPath("/news", lang)}
+            class="text-sm font-medium text-primary-500 hover:text-primary-600 transition-colors"
+          >
+            {t(lang, "common.learnMore")} →
+          </a>
+        </div>
+        <div class="grid gap-6 md:grid-cols-3">
+          {newsItems.map((item) => (
+            <a
+              href={getLocalizedPath(`/news/${item.data.slug}`, lang)}
+              class="group rounded-xl overflow-hidden bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700 hover:border-primary-300 dark:hover:border-primary-700 transition-all"
+            >
+              <div class="aspect-video overflow-hidden bg-gray-200 dark:bg-gray-700">
+                <img
+                  src={item.data.image}
+                  alt={item.data.title}
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+              <div class="p-4">
+                <time class="text-xs font-medium text-primary-500">
+                  {item.data.date.toISOString().split("T")[0].replace(/-/g, ".")}
+                </time>
+                <h3 class="font-semibold text-sm text-gray-900 dark:text-white mt-1 line-clamp-2 group-hover:text-primary-500 transition-colors">
+                  {item.data.title}
+                </h3>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+</BaseLayout>

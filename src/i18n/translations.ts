@@ -23,10 +23,9 @@ export const translations = {
 
     // News
     "news.title": "ニュース",
-    "news.date.20260309": "2026.03.09",
-    "news.item.20260309.title": "会社設立準備中のお知らせ",
-    "news.item.20260309.body":
-      "現在、TrainBit 合同会社の設立に向けた各種準備を進めております。正式な設立日および営業開始日につきましては、決定次第改めて本ウェブサイトにてお知らせいたします。今後とも変わらぬご支援を賜りますよう、よろしくお願い申し上げます。",
+    "news.readMore": "続きを読む",
+    "news.latestNews": "最新ニュース",
+    "news.backToList": "ニュース一覧へ戻る",
 
     // Philosophy
     "philosophy.title": "企業理念",
@@ -160,7 +159,7 @@ export const translations = {
     "privacy.s7.email": "メールアドレス: 準備中",
 
     // Footer
-    "footer.copyright": "© 2026 TrainBit 合同会社. All rights reserved.",
+    "footer.copyright": "© 2026 TrainBit 合同会社 無断転載を禁じます。",
     "footer.privacy": "プライバシーポリシー",
 
     // Theme
@@ -169,6 +168,7 @@ export const translations = {
 
     // Common
     "common.visitSite": "サイトを見る",
+    "common.learnMore": "詳しく見る",
   },
   en: {
     // Navigation
@@ -186,10 +186,9 @@ export const translations = {
 
     // News
     "news.title": "News",
-    "news.date.20260309": "2026.03.09",
-    "news.item.20260309.title": "Notice: Company Establishment in Progress",
-    "news.item.20260309.body":
-      "We are currently preparing for the establishment of TrainBit LLC. The official establishment date and start of operations will be announced on this website as soon as they are determined. We appreciate your continued support.",
+    "news.readMore": "Read More",
+    "news.latestNews": "Latest News",
+    "news.backToList": "Back to News",
 
     // Philosophy
     "philosophy.title": "Corporate Philosophy",
@@ -337,6 +336,7 @@ export const translations = {
 
     // Common
     "common.visitSite": "Visit Site",
+    "common.learnMore": "Learn More",
   },
 } as const;
 
