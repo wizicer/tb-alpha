@@ -1,0 +1,59 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { t } from "../../i18n/translations";
+
+const lang = "en";
+---
+
+<BaseLayout title={t(lang, "philosophy.title")} lang={lang}>
+  <!-- Mission -->
+  <section class="py-16 md:py-24 bg-gradient-to-br from-primary-50 to-white dark:from-gray-900 dark:to-gray-800">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-12">
+        {t(lang, "philosophy.title")}
+      </h1>
+
+      <div class="mb-16">
+        <h2 class="text-xl md:text-2xl font-bold text-primary-500 mb-8 flex items-center gap-3">
+          <span class="w-1 h-8 bg-primary-500 rounded-full"></span>
+          {t(lang, "philosophy.mission.title")}
+        </h2>
+        <div class="space-y-4">
+          {[
+            t(lang, "philosophy.mission.1"),
+            t(lang, "philosophy.mission.2"),
+            t(lang, "philosophy.mission.3"),
+          ].map((text) => (
+            <div class="flex items-start gap-3 p-4 rounded-lg bg-white dark:bg-gray-800 shadow-sm border border-gray-100 dark:border-gray-700">
+              <span class="w-2 h-2 mt-2 rounded-full bg-accent-500 shrink-0"></span>
+              <p class="text-gray-700 dark:text-gray-300 leading-relaxed">{text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CEO Message -->
+  <section class="py-16 md:py-24">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-xl md:text-2xl font-bold text-primary-500 mb-8 flex items-center gap-3">
+        <span class="w-1 h-8 bg-primary-500 rounded-full"></span>
+        {t(lang, "philosophy.greeting.title")}
+      </h2>
+      <div class="p-8 rounded-2xl bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700">
+        <h3 class="text-lg md:text-xl font-semibold text-gray-900 dark:text-white mb-6 leading-relaxed">
+          {t(lang, "philosophy.greeting.heading")}
+        </h3>
+        <div class="space-y-4 text-gray-600 dark:text-gray-400 leading-relaxed">
+          <p>{t(lang, "philosophy.greeting.p1")}</p>
+          <p>{t(lang, "philosophy.greeting.p2")}</p>
+          <p>{t(lang, "philosophy.greeting.p3")}</p>
+        </div>
+        <p class="mt-8 text-right font-medium text-gray-800 dark:text-gray-200">
+          {t(lang, "philosophy.greeting.sign")}
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,60 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { t } from "../i18n/translations";
+
+const lang = "ja";
+
+const sections = [
+  { title: t(lang, "privacy.s1.title"), body: t(lang, "privacy.s1.body"), items: t(lang, "privacy.s1.items") },
+  { title: t(lang, "privacy.s2.title"), body: t(lang, "privacy.s2.body"), items: t(lang, "privacy.s2.items") },
+  { title: t(lang, "privacy.s3.title"), body: t(lang, "privacy.s3.body"), items: t(lang, "privacy.s3.items") },
+  { title: t(lang, "privacy.s4.title"), body: t(lang, "privacy.s4.body") },
+  { title: t(lang, "privacy.s5.title"), body: t(lang, "privacy.s5.body") },
+  { title: t(lang, "privacy.s6.title"), body: t(lang, "privacy.s6.body") },
+];
+---
+
+<BaseLayout title={t(lang, "privacy.title")} lang={lang}>
+  <section class="py-16 md:py-24">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-8">
+        {t(lang, "privacy.title")}
+      </h1>
+
+      <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-12">
+        {t(lang, "privacy.intro")}
+      </p>
+
+      <div class="space-y-10">
+        {sections.map((s) => (
+          <div>
+            <h2 class="text-lg font-bold text-gray-900 dark:text-white mb-3">{s.title}</h2>
+            <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-2">{s.body}</p>
+            {s.items && (
+              <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-1 text-sm">
+                {s.items.split(" / ").map((item: string) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            )}
+          </div>
+        ))}
+
+        <!-- Section 7: Contact -->
+        <div>
+          <h2 class="text-lg font-bold text-gray-900 dark:text-white mb-3">
+            {t(lang, "privacy.s7.title")}
+          </h2>
+          <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-2">
+            {t(lang, "privacy.s7.body")}
+          </p>
+          <div class="text-gray-600 dark:text-gray-400 text-sm space-y-1">
+            <p>{t(lang, "privacy.s7.company")}</p>
+            <p>{t(lang, "privacy.s7.address")}</p>
+            <p>{t(lang, "privacy.s7.email")}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
