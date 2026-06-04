@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { t } from "../../i18n/translations";
+import { t, getLocalizedPath } from "../../i18n/translations";
 import type { Lang } from "../../i18n/translations";
 
 interface Props {
@@ -8,6 +8,39 @@ interface Props {
 }
 
 const { lang } = Astro.props;
+
+const services = [
+  {
+    num: "01",
+    emoji: "🛡️",
+    name: t(lang, "services.1.name"),
+    en: t(lang, "services.1.en"),
+    targetLabel: t(lang, "services.1.target.label"),
+    targetBody: t(lang, "services.1.target.body"),
+    formatLabel: t(lang, "services.1.format.label"),
+    formatBody: t(lang, "services.1.format.body"),
+  },
+  {
+    num: "02",
+    emoji: "🔗",
+    name: t(lang, "services.2.name"),
+    en: t(lang, "services.2.en"),
+    targetLabel: t(lang, "services.2.target.label"),
+    targetBody: t(lang, "services.2.target.body"),
+    formatLabel: t(lang, "services.2.format.label"),
+    formatBody: t(lang, "services.2.format.body"),
+  },
+  {
+    num: "03",
+    emoji: "📡",
+    name: t(lang, "services.3.name"),
+    en: t(lang, "services.3.en"),
+    targetLabel: t(lang, "services.3.target.label"),
+    targetBody: t(lang, "services.3.target.body"),
+    formatLabel: t(lang, "services.3.format.label"),
+    formatBody: t(lang, "services.3.format.body"),
+  },
+];
 ---
 
 <BaseLayout title={t(lang, "services.title")} lang={lang}>
@@ -17,105 +50,42 @@ const { lang } = Astro.props;
         {t(lang, "services.title")}
       </h1>
 
-      <h2 class="text-xl md:text-2xl font-bold text-primary-500 mb-8 flex items-center gap-3">
-        <span class="w-1 h-8 bg-primary-500 rounded-full"></span>
-        {t(lang, "services.products.title")}
-      </h2>
-
-      <div class="grid gap-8 md:grid-cols-2 mb-16">
-        <!-- DeML OS -->
-        <div class="p-6 rounded-2xl bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700 flex flex-col">
-          <div class="flex items-center gap-3 mb-4">
-            <span class="text-4xl">🧠</span>
-            <div>
-              <h3 class="text-xl font-bold text-gray-900 dark:text-white">
-                {t(lang, "services.deml.name")}
-              </h3>
-              <span class="text-xs font-medium px-3 py-0.5 rounded-full bg-accent-500 text-white">
-                {t(lang, "services.deml.stage")}
-              </span>
+      <div class="space-y-8">
+        {services.map((svc) => (
+          <div class="p-8 rounded-2xl bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700">
+            <div class="flex items-start gap-4 mb-6">
+              <span class="text-4xl shrink-0">{svc.emoji}</span>
+              <div class="flex-1 min-w-0">
+                <div class="flex flex-wrap items-center gap-3 mb-1">
+                  <h2 class="text-xl font-bold text-gray-900 dark:text-white">{svc.name}</h2>
+                  <span class="text-xs font-medium px-3 py-0.5 rounded-full bg-primary-100 dark:bg-primary-900/40 text-primary-600 dark:text-primary-400">
+                    {svc.en}
+                  </span>
+                  <span class="text-xs font-mono text-gray-400 ml-auto">{svc.num}</span>
+                </div>
+              </div>
             </div>
-          </div>
-          <p class="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
-            {t(lang, "services.deml.summary")}
-          </p>
-          <div class="space-y-3 text-sm mb-6 flex-1">
-            <div>
-              <h4 class="font-semibold text-accent-500 mb-1">{t(lang, "services.deml.scope.title")}</h4>
-              <p class="text-gray-600 dark:text-gray-400">{t(lang, "services.deml.scope.body")}</p>
+            <div class="grid gap-4 sm:grid-cols-2 pl-0 sm:pl-16">
+              <div class="p-4 rounded-xl bg-white dark:bg-gray-900/50 border border-gray-100 dark:border-gray-700">
+                <p class="text-xs font-semibold text-primary-500 uppercase tracking-wide mb-2">{svc.targetLabel}</p>
+                <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">{svc.targetBody}</p>
+              </div>
+              <div class="p-4 rounded-xl bg-white dark:bg-gray-900/50 border border-gray-100 dark:border-gray-700">
+                <p class="text-xs font-semibold text-primary-500 uppercase tracking-wide mb-2">{svc.formatLabel}</p>
+                <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">{svc.formatBody}</p>
+              </div>
             </div>
-            <div>
-              <h4 class="font-semibold text-gray-500 mb-1">{t(lang, "services.deml.outscope.title")}</h4>
-              <p class="text-gray-600 dark:text-gray-400">{t(lang, "services.deml.outscope.body")}</p>
-            </div>
-            <div>
-              <h4 class="font-semibold text-primary-500 mb-1">{t(lang, "services.deml.eval.title")}</h4>
-              <p class="text-gray-600 dark:text-gray-400">{t(lang, "services.deml.eval.body")}</p>
-            </div>
-          </div>
-          <a
-            href="https://deml.space/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center gap-1 text-sm font-medium text-primary-500 hover:text-primary-600 transition-colors"
-          >
-            {t(lang, "common.visitSite")}
-            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-            </svg>
-          </a>
-        </div>
-
-        <!-- zkDaily -->
-        <div class="p-6 rounded-2xl bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700 flex flex-col">
-          <div class="flex items-center gap-3 mb-4">
-            <span class="text-4xl">📰</span>
-            <h3 class="text-xl font-bold text-gray-900 dark:text-white">
-              {t(lang, "services.zkdaily.name")}
-            </h3>
-          </div>
-          <p class="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
-            {t(lang, "services.zkdaily.summary")}
-          </p>
-          <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed mb-6 flex-1">
-            {t(lang, "services.zkdaily.value")}
-          </p>
-          <a
-            href="https://hints.plonk.pro/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center gap-1 text-sm font-medium text-primary-500 hover:text-primary-600 transition-colors"
-          >
-            {t(lang, "common.visitSite")}
-            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-            </svg>
-          </a>
-        </div>
-      </div>
-
-      <!-- Solutions & Consulting -->
-      <h2 class="text-xl md:text-2xl font-bold text-primary-500 mb-8 flex items-center gap-3">
-        <span class="w-1 h-8 bg-primary-500 rounded-full"></span>
-        {t(lang, "services.solutions.title")}
-      </h2>
-
-      <div class="grid gap-6 md:grid-cols-3">
-        {[
-          { title: t(lang, "services.blockchain.title"), body: t(lang, "services.blockchain.body"), icon: "M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101" },
-          { title: t(lang, "services.dx.title"), body: t(lang, "services.dx.body"), icon: "M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" },
-          { title: t(lang, "services.education.title"), body: t(lang, "services.education.body"), icon: "M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" },
-        ].map((item) => (
-          <div class="p-6 rounded-xl bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700">
-            <div class="w-10 h-10 rounded-lg bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center mb-4">
-              <svg class="w-5 h-5 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d={item.icon} />
-              </svg>
-            </div>
-            <h3 class="font-semibold text-gray-900 dark:text-white mb-2">{item.title}</h3>
-            <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">{item.body}</p>
           </div>
         ))}
+      </div>
+
+      <div class="mt-12 text-center">
+        <a
+          href={getLocalizedPath("/contact", lang)}
+          class="inline-flex items-center px-8 py-3 rounded-full bg-primary-500 text-white font-medium hover:bg-primary-600 transition-colors shadow-lg shadow-primary-500/25"
+        >
+          {t(lang, "hero.cta.consult")}
+        </a>
       </div>
     </div>
   </section>
