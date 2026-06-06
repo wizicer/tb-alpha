@@ -25,7 +25,7 @@ const newsItems = allNews
 
       {newsItems.length === 0 ? (
         <p class="text-gray-500 dark:text-gray-400 text-center py-12">
-          {lang === "ja" ? "ニュースはまだありません。" : "No news articles yet."}
+          {t(lang, "news.empty")}
         </p>
       ) : (
         <div class="space-y-8">

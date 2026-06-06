@@ -12,7 +12,7 @@ const news = defineCollection({
     date: z.coerce.date(),
     excerpt: z.string(),
     image: z.string(),
-    lang: z.enum(["ja", "en"]),
+    lang: z.enum(["ja", "en", "zh-cn", "zh-tw"]),
     slug: z.string(),
   }),
 });

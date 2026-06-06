@@ -28,6 +28,46 @@ const { title, lang = "ja" } = Astro.props;
     </main>
     <Footer lang={lang} />
     <script is:inline>
+      // Language initialization
+      (function () {
+        const languagePaths = {
+          ja: "/",
+          en: "/en/",
+          "zh-cn": "/zh-cn/",
+          "zh-tw": "/zh-tw/",
+        };
+
+        function normalizeLanguage(language) {
+          const value = language.toLowerCase();
+          if (value.startsWith("ja")) return "ja";
+          if (value.startsWith("en")) return "en";
+          if (value === "zh-tw" || value === "zh-hk" || value === "zh-mo" || value.includes("hant")) return "zh-tw";
+          if (value.startsWith("zh")) return "zh-cn";
+          return "ja";
+        }
+
+        document.querySelectorAll("[data-lang]").forEach((link) => {
+          link.addEventListener("click", () => {
+            localStorage.setItem("preferred-lang", link.getAttribute("data-lang"));
+          });
+        });
+
+        const requestedLanguage = new URLSearchParams(location.search).get("lang");
+        if (requestedLanguage && requestedLanguage in languagePaths) {
+          localStorage.setItem("preferred-lang", requestedLanguage);
+          history.replaceState(null, "", location.pathname);
+        }
+
+        if (location.pathname === "/" || location.pathname === "/index.html") {
+          const preferredLanguage = localStorage.getItem("preferred-lang");
+          const detectedLanguage = preferredLanguage || normalizeLanguage(navigator.languages?.[0] || navigator.language || "ja");
+          const targetPath = languagePaths[detectedLanguage] || "/";
+          if (targetPath !== location.pathname) {
+            location.replace(targetPath);
+          }
+        }
+      })();
+
       // Theme initialization
       (function () {
         const theme = localStorage.getItem("theme");

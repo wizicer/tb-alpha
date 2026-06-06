@@ -1,0 +1,17 @@
+---
+import NewsDetailPage from "../../../components/pages/NewsDetailPage.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const allNews = await getCollection("news");
+  const enNews = allNews.filter((n) => n.data.lang === "zh-tw");
+  return enNews.map((entry) => ({
+    params: { slug: entry.data.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+---
+
+<NewsDetailPage lang="zh-tw" entry={entry} />

@@ -1,10 +1,190 @@
 export const languages = {
   ja: "日本語",
   en: "English",
+  "zh-cn": "简体中文",
+  "zh-tw": "繁體中文",
 } as const;
 
 export type Lang = keyof typeof languages;
 export const defaultLang: Lang = "ja";
+
+const zhCN = {
+  "nav.news": "新闻",
+  "nav.philosophy": "企业理念",
+  "nav.services": "业务内容",
+  "nav.about": "公司概要",
+  "nav.contact": "联系我们",
+  "hero.eyebrow": "AI 时代的下一代安全。",
+  "hero.sub": "守护 AI 时代企业的数字资产与隐私。",
+  "hero.main": "用下一代安全，守护贵公司的未来。",
+  "hero.desc": "核心团队拥有深厚的国际背景与全球视野，分布于东京及海外多个技术据点。我们结合业界顶尖的学术网络与下一代密码学（ZK）技术，提供高标准、标准化的代码审计与伴随式安全支持。",
+  "hero.cta.consult": "预约线上初次咨询（日/英/中对应）",
+  "hero.cta.whitepaper": "下载服务标准白皮书",
+  "hero.cta.services": "查看服务",
+  "hero.cta.contact": "联系我们",
+  "news.title": "新闻",
+  "news.readMore": "继续阅读",
+  "news.latestNews": "最新新闻",
+  "news.backToList": "返回新闻列表",
+  "news.empty": "暂无新闻。",
+  "philosophy.title": "企业理念",
+  "philosophy.mission.title": "使命",
+  "philosophy.mission.1": "成为连接日本与中国的桥梁。",
+  "philosophy.mission.2": "持续提供产品与服务，以我们的智慧和努力为社会发展作出贡献。",
+  "philosophy.mission.3": "致力于成为兼具“稳健成长”与“高收益性”的公司。",
+  "philosophy.greeting.title": "代表致辞",
+  "philosophy.greeting.heading": "以区块链技术连接日本与中国，推动业务优化。",
+  "philosophy.greeting.p1": "我曾在中国经营 IT 企业约 5 年，开发过众多基于区块链的解决方案。在这一过程中，我深切体会到，区块链技术并不只属于加密资产领域，它在供应链和真实商业问题的解决中同样具备巨大力量。",
+  "philosophy.greeting.p2": "日本在技术创新领域处于世界领先地位，但在网络安全与区块链社会落地方面，仍蕴含许多可能性与课题。TrainBit 合同会社将最大限度发挥积累的专业知识与经验，为每一位客户提供贴合实际情况的定制化系统，支持业务流程优化与 DX 推进。",
+  "philosophy.greeting.p3": "我们将全力提升日本与中国双方的利益，成为连接两国的坚实桥梁。衷心希望继续得到各位的支持与指导。",
+  "philosophy.greeting.sign": "TrainBit 合同会社 代表社员 崔璨",
+  "strengths.title": "我们的优势",
+  "strengths.1.title": "全球技术视角与学术网络",
+  "strengths.1.body": "团队拥有广泛的跨国技术网络与国际背景，在 AI 应用安全、Web3 智能合约、ZK（零知识证明）隐私技术方面具备丰富的国际项目经验，并拥有深厚的产学研资源。",
+  "strengths.2.title": "标准化且顺畅的协作",
+  "strengths.2.body": "业务流程高度标准化，并提供完整的书面报告（日/英双语）。我们降低复杂口头沟通成本，高效交付高质量成果。",
+  "strengths.3.title": "日本本地安心窗口",
+  "strengths.3.body": "东京总部负责人直接处理商务与项目管理。日本国内的法律合规、合同与结算都可以安心交由我们对应。",
+  "services.title": "服务内容",
+  "services.1.name": "AI 应用与隐私安全审计",
+  "services.1.en": "AI 与隐私审计",
+  "services.1.target.label": "对象",
+  "services.1.target.body": "正在导入生成式 AI，并担心企业机密或源代码泄露的企业。",
+  "services.1.format.label": "形式",
+  "services.1.format.body": "针对企业 AI 使用场景进行合规评估、数据泄露防护、权限管理标准化审计。",
+  "services.2.name": "Web3 与智能合约代码审计",
+  "services.2.en": "Web3 与智能合约审计",
+  "services.2.target.label": "对象",
+  "services.2.target.body": "区块链项目，以及计划发行或引入数字资产的金融与创新企业。",
+  "services.2.format.label": "形式",
+  "services.2.format.body": "活用 ZK（零知识证明）等前沿密码学技术，提供最高安全级别的智能合约与隐私资产审计。",
+  "services.3.name": "伴随式安全情报订阅",
+  "services.3.en": "全球安全订阅",
+  "services.3.target.label": "对象",
+  "services.3.target.body": "需要长期技术顾问支持，或希望追踪最新安全威胁的企业。",
+  "services.3.format.label": "形式",
+  "services.3.format.body": "月度订阅。每月提供全球最新 AI/Web3 漏洞情报与安全案例解读（日文 PDF），并附固定时段的在线（Slack/Teams）技术 Q&A 支持。",
+  "workflow.title": "服务流程",
+  "workflow.1.title": "线上咨询",
+  "workflow.1.body": "通过官方网站表单提交需求。支持以书面形式确认信息。",
+  "workflow.2.title": "需求确认",
+  "workflow.2.body": "通过一对一线上会议明确审计范围（日/英/中三语对应）。",
+  "workflow.3.title": "技术实施",
+  "workflow.3.body": "由国际技术中心高效、封闭地执行代码安全审计与评估。",
+  "workflow.4.title": "报告交付",
+  "workflow.4.body": "交付详细的日/英修正建议报告，并免费提供一次复测服务。",
+  "company.title": "公司概要",
+  "company.structure.label": "业务体制",
+  "company.hq.label": "【总部・窗口】",
+  "company.hq.body": "日本・东京（负责商务对应、合同签署、项目管理）",
+  "company.rd.label": "【研发・技术中心】",
+  "company.rd.body": "海外全球技术中心（负责漏洞研究、代码审计、密码学技术）",
+  "company.advisors.label": "【学术顾问网络】",
+  "company.advisors.body": "与国际网络安全、密码学领域的特邀学术专家合作",
+  "about.title": "公司概要",
+  "about.info.title": "基本信息",
+  "about.name": "TrainBit 合同会社",
+  "about.name.label": "商号",
+  "about.representative.label": "代表社员",
+  "about.representative": "崔璨",
+  "about.capital.label": "资本金",
+  "about.capital": "5,000,000 日元",
+  "about.established.label": "成立",
+  "about.established": "准备中",
+  "about.address.label": "地址",
+  "about.address": "准备中",
+  "about.phone.label": "电话",
+  "about.phone": "准备中",
+  "about.email.label": "邮箱",
+  "about.email": "准备中",
+  "about.hours.label": "营业时间",
+  "about.hours": "10:00 - 18:00",
+  "about.holidays.label": "休息日",
+  "about.holidays": "周六、周日及日本法定节假日",
+  "about.purpose.label": "经营目的",
+  "about.purpose.1": "互联网相关业务的策划、咨询与营销",
+  "about.purpose.2": "IT 咨询",
+  "about.purpose.3": "人工智能（AI）技术应用咨询及相关软件销售",
+  "about.purpose.4": "机器学习（ML）模型应用咨询",
+  "about.purpose.5": "Web3 业务的策划、咨询与营销",
+  "about.purpose.6": "活动、研讨会、讲座与培训的策划运营，以及面向会员的出版物发行",
+  "about.purpose.7": "与上述各项附带相关的一切业务",
+  "contact.title": "联系我们",
+  "contact.intro": "为确保技术评估的准确性，所有初次咨询均完全在线进行（Zoom/Teams）。欢迎使用日语、英语或中文联系我们。",
+  "contact.name": "联系人",
+  "contact.name.required": "（必填）",
+  "contact.company": "公司名称",
+  "contact.email": "邮箱地址",
+  "contact.email.required": "（必填）",
+  "contact.phone": "电话号码",
+  "contact.category": "咨询类别",
+  "contact.category.ai": "AI 隐私安全审计",
+  "contact.category.web3": "Web3 智能合约审计",
+  "contact.category.subscription": "安全情报订阅",
+  "contact.category.other": "其他",
+  "contact.message": "具体需求",
+  "contact.privacy": "我同意隐私政策",
+  "contact.privacy.required": "（必填）",
+  "contact.submit": "提交咨询",
+  "contact.privacy.link": "隐私政策",
+  "privacy.title": "隐私政策",
+  "privacy.intro": "TrainBit 合同会社（以下简称“本公司”）深刻认识到保护客户个人信息的重要性，遵守个人信息保护相关法律法规，并根据以下隐私政策努力进行适当处理与保护。",
+  "privacy.s1.title": "1. 收集的个人信息",
+  "privacy.s1.body": "本公司可能通过本网站的咨询表单收集以下个人信息。",
+  "privacy.s1.items": "姓名 / 公司名称 / 邮箱地址 / 电话号码 / 咨询内容中包含的个人信息",
+  "privacy.s2.title": "2. 个人信息的使用目的",
+  "privacy.s2.body": "本公司将收集到的个人信息用于以下目的。",
+  "privacy.s2.items": "回复咨询与联系 / 提供本公司服务及相关信息 / 作为服务改善与质量提升的参考资料",
+  "privacy.s3.title": "3. 向第三方提供个人信息",
+  "privacy.s3.body": "除以下情况外，本公司不会在未事先取得客户同意的情况下向第三方提供个人信息。",
+  "privacy.s3.items": "基于法律法规的情况 / 为保护人的生命、身体或财产而有必要且难以取得本人同意的情况 / 国家机关或地方公共团体等依法执行事务需要协助，且取得本人同意可能妨碍该事务执行的情况",
+  "privacy.s4.title": "4. 个人信息管理",
+  "privacy.s4.body": "本公司将采取必要且适当的措施，安全管理个人信息，防止泄露、灭失或损毁。",
+  "privacy.s5.title": "5. 公开、更正、追加、删除及停止使用等",
+  "privacy.s5.body": "当本人请求公开、更正、追加、删除或停止使用个人信息时，本公司将在确认本人身份后，依照法律法规迅速处理。",
+  "privacy.s6.title": "6. 隐私政策的变更",
+  "privacy.s6.body": "本公司可能因法律法规修订或业务内容变更等原因，适时审查并必要时变更本隐私政策。变更后的隐私政策自刊登于本网站时起生效。",
+  "privacy.s7.title": "7. 联系窗口",
+  "privacy.s7.body": "关于本隐私政策以及个人信息处理的咨询窗口如下。",
+  "privacy.s7.company": "TrainBit 合同会社",
+  "privacy.s7.address": "地址：准备中",
+  "privacy.s7.email": "邮箱地址：准备中",
+  "footer.copyright": "© 2026 TrainBit 合同会社。保留所有权利。",
+  "footer.privacy": "隐私政策",
+  "theme.light": "浅色",
+  "theme.dark": "深色",
+  "common.visitSite": "查看网站",
+  "common.learnMore": "了解更多",
+} as const;
+
+function toTraditionalText(value: string): string {
+  const map: Record<string, string> = {
+    "负责": "負責", "联系": "聯繫", "网站": "網站", "审查": "審查", "选择": "選擇", "语言": "語言",
+    "简": "簡", "体": "體", "汉": "漢", "语": "語", "时": "時", "闻": "聞", "业": "業", "务": "務", "贵": "貴", "来": "來",
+    "内": "內", "联": "聯", "们": "們", "优": "優", "势": "勢", "术": "術", "际": "際", "视": "視",
+    "网": "網", "络": "絡", "应": "應", "隐": "隱", "审": "審", "计": "計", "对": "對", "导": "導", "护": "護",
+    "担": "擔", "忧": "憂", "泄": "洩", "评": "評", "数": "數", "据": "據", "权": "權", "标": "標",
+    "准": "準", "区": "區", "块": "塊", "链": "鏈", "与": "與", "约": "約", "码": "碼", "发": "發",
+    "产": "產", "资": "資", "证": "證", "级": "級", "别": "別", "订": "訂", "阅": "閱", "长": "長", "无": "無",
+    "顾": "顧", "问": "問", "踪": "蹤", "胁": "脅", "报": "報", "读": "讀", "线": "線", "询": "詢",
+    "过": "過", "单": "單", "确": "確", "认": "認", "范": "範", "围": "圍", "执": "執", "闭": "閉", "桥": "橋",
+    "详": "詳", "议": "議", "测": "測", "况": "況", "总": "總", "签": "簽", "项": "項", "门": "門",
+    "会": "會", "称": "稱", "号": "號", "额": "額", "话": "話", "邮": "郵", "营": "營", "间": "間",
+    "经": "經", "销": "銷", "习": "習", "讲": "講", "训": "訓", "布": "佈", "类": "類", "须": "須",
+    "诉": "訴", "个": "個", "户": "戶", "关": "關", "规": "規", "处": "處", "为": "為",
+    "从": "從", "复": "覆", "给": "給", "难": "難", "获": "獲", "国": "國", "团": "團", "协": "協",
+    "碍": "礙", "灭": "滅", "损": "損", "删": "刪", "变": "變", "开": "開", "浅": "淺", "蓝": "藍", "云": "雲",
+    "续": "續", "献": "獻", "稳": "穩", "进": "進", "广": "廣", "丰": "豐", "验": "驗", "书": "書",
+  };
+
+  return Object.entries(map).reduce((text, [from, to]) => text.replaceAll(from, to), value);
+}
+
+function toTraditionalTranslations<T extends Record<string, string>>(values: T): T {
+  return Object.fromEntries(
+    Object.entries(values).map(([key, value]) => [key, toTraditionalText(value)])
+  ) as T;
+}
 
 export const translations = {
   ja: {
@@ -30,6 +210,7 @@ export const translations = {
     "news.readMore": "続きを読む",
     "news.latestNews": "最新ニュース",
     "news.backToList": "ニュース一覧へ戻る",
+    "news.empty": "ニュースはまだありません。",
 
     // Philosophy
     "philosophy.title": "企業理念",
@@ -252,6 +433,7 @@ export const translations = {
     "news.readMore": "Read More",
     "news.latestNews": "Latest News",
     "news.backToList": "Back to News",
+    "news.empty": "No news articles yet.",
 
     // Philosophy
     "philosophy.title": "Corporate Philosophy",
@@ -454,12 +636,15 @@ export const translations = {
     "common.visitSite": "Visit Site",
     "common.learnMore": "Learn More",
   },
+  "zh-cn": zhCN,
+  "zh-tw": toTraditionalTranslations(zhCN),
 } as const;
 
 export type TranslationKey = keyof (typeof translations)["ja"];
 
 export function t(lang: Lang, key: TranslationKey): string {
-  return translations[lang][key] ?? translations[defaultLang][key] ?? key;
+  const table = translations[lang] as Partial<Record<TranslationKey, string>>;
+  return table[key] ?? translations[defaultLang][key] ?? key;
 }
 
 export function getLangFromUrl(url: URL): Lang {
@@ -468,7 +653,14 @@ export function getLangFromUrl(url: URL): Lang {
   return defaultLang;
 }
 
+export function stripLangFromPath(path: string): string {
+  const pattern = new RegExp(`^/(${Object.keys(languages).filter((lang) => lang !== defaultLang).join("|")})(?=/|$)`);
+  const stripped = path.replace(pattern, "") || "/";
+  return stripped.startsWith("/") ? stripped : `/${stripped}`;
+}
+
 export function getLocalizedPath(path: string, lang: Lang): string {
-  if (lang === defaultLang) return path;
-  return `/${lang}${path}`;
+  const normalizedPath = path.startsWith("/") ? path : `/${path}`;
+  if (lang === defaultLang) return normalizedPath;
+  return `/${lang}${normalizedPath}`;
 }
