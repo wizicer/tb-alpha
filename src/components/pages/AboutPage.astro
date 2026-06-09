@@ -30,6 +30,13 @@ const purposes = [
   t(lang, "about.purpose.6"),
   t(lang, "about.purpose.7"),
 ];
+
+const intro: Record<Lang, string> = {
+  ja: "TrainBit は東京に本社を置き、世界中の技術専門家および研究ネットワークと長期的に連携しています。",
+  en: "TrainBit is headquartered in Tokyo and maintains long-term collaboration with global technical experts and research networks.",
+  "zh-cn": "TrainBit 总部位于东京，并与全球技术专家及研究网络保持长期合作。",
+  "zh-tw": "TrainBit 總部位於東京，並與全球技術專家及研究網絡保持長期合作。",
+};
 ---
 
 <BaseLayout title={t(lang, "about.title")} lang={lang}>
@@ -38,6 +45,9 @@ const purposes = [
       <h1 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-12">
         {t(lang, "about.title")}
       </h1>
+      <p class="text-lg leading-8 text-gray-600 dark:text-gray-400 mb-12">
+        {intro[lang]}
+      </p>
 
       <h2 class="text-xl md:text-2xl font-bold text-primary-500 mb-8 flex items-center gap-3">
         <span class="w-1 h-8 bg-primary-500 rounded-full"></span>

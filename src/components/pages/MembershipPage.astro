@@ -1,0 +1,320 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getLocalizedPath } from "../../i18n/translations";
+import type { Lang } from "../../i18n/translations";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+
+type Plan = {
+  title: string;
+  price: string;
+  body: string[];
+  features: string[];
+  cta: string;
+  href: string;
+  featured?: boolean;
+};
+
+type Content = {
+  hero: {
+    title: string;
+    subtitle: string;
+    body: string[];
+  };
+  value: {
+    title: string;
+    cards: { title: string; body: string }[];
+  };
+  plans: {
+    title: string;
+    items: Plan[];
+  };
+  final: {
+    title: string;
+    body: string;
+    cta: string;
+  };
+};
+
+const zhCN: Content = {
+  hero: {
+    title: "会员制顾问服务",
+    subtitle: "持续获得专业支持",
+    body: [
+      "AI 与 Web3 技术快速发展，企业真正需要的不只是更多信息，而是更清晰的判断。",
+      "TrainBit 通过持续性的研究、行业洞察与顾问支持，帮助企业理解技术趋势、评估发展机会，并降低决策风险。",
+    ],
+  },
+  value: {
+    title: "我们提供什么",
+    cards: [
+      { title: "行业研究", body: "定期整理 AI、Web3 与密码学领域的重要趋势与市场动态。" },
+      { title: "专业洞察", body: "帮助企业理解技术变化背后的商业机会与潜在风险。" },
+      { title: "顾问支持", body: "围绕技术应用、业务规划与风险判断提供有限顾问支持。" },
+      { title: "长期视角", body: "为企业提供持续、稳定的外部技术与业务视角。" },
+    ],
+  },
+  plans: {
+    title: "服务方案",
+    items: [
+      {
+        title: "基础会员",
+        price: "10万日元 / 月",
+        body: ["适合希望持续掌握 AI、Web3 与密码学领域行业动态的企业与机构。"],
+        features: ["定期行业研究与会员刊物", "AI、Web3 与密码学趋势解读", "有限次数的顾问咨询支持"],
+        cta: "申请加入",
+        href: "/contact",
+        featured: true,
+      },
+      {
+        title: "企业顾问服务",
+        price: "根据需求定制",
+        body: ["适合正在推进 AI、Web3 或相关创新项目的企业。", "根据企业需求提供更深入的顾问支持，包括："],
+        features: ["技术与业务咨询", "项目评估与规划建议", "安全与风险分析", "专项研究支持", "长期顾问合作"],
+        cta: "联系我们",
+        href: "/contact",
+      },
+    ],
+  },
+  final: {
+    title: "企业真正需要的不只是更多信息，而是更清晰的判断。",
+    body: "TrainBit 希望成为企业长期可信赖的技术顾问伙伴，帮助客户看清方向、降低风险，并将新技术转化为实际价值。",
+    cta: "联系 TrainBit",
+  },
+};
+
+const ja: Content = {
+  hero: {
+    title: "会員制アドバイザリーサービス",
+    subtitle: "継続的な専門サポート",
+    body: [
+      "AI と Web3 技術は急速に進化しています。企業に本当に必要なのは、より多くの情報だけではなく、より明確な判断です。",
+      "TrainBit は継続的なリサーチ、業界動向の整理、アドバイザリー支援を通じて、技術トレンドの理解、事業機会の評価、意思決定リスクの低減を支援します。",
+    ],
+  },
+  value: {
+    title: "提供内容",
+    cards: [
+      { title: "業界リサーチ", body: "AI、Web3、暗号技術領域の重要なトレンドと市場動向を定期的に整理します。" },
+      { title: "専門的な洞察", body: "技術変化の背景にある事業機会と潜在的リスクを理解できるよう支援します。" },
+      { title: "アドバイザリー支援", body: "技術活用、事業計画、リスク判断に関する限定的な顧問サポートを提供します。" },
+      { title: "長期的な視点", body: "企業に対して、継続的で安定した外部の技術・事業視点を提供します。" },
+    ],
+  },
+  plans: {
+    title: "サービスプラン",
+    items: [
+      {
+        title: "ベーシック会員",
+        price: "10万円 / 月",
+        body: ["AI、Web3、暗号技術領域の業界動向を継続的に把握したい企業・機関に適しています。"],
+        features: ["定期的な業界リサーチと会員向け刊行物", "AI、Web3、暗号技術トレンドの解説", "回数限定のアドバイザリー相談"],
+        cta: "申し込む",
+        href: "/contact",
+        featured: true,
+      },
+      {
+        title: "企業向けアドバイザリー",
+        price: "ご要望に応じて個別設計",
+        body: ["AI、Web3、または関連するイノベーションプロジェクトを推進している企業に適しています。", "企業の状況に応じて、より深いアドバイザリー支援を提供します。"],
+        features: ["技術・事業に関する相談", "プロジェクト評価と計画策定の助言", "セキュリティ・リスク分析", "個別テーマのリサーチ支援", "長期アドバイザリー契約"],
+        cta: "お問い合わせ",
+        href: "/contact",
+      },
+    ],
+  },
+  final: {
+    title: "企業に本当に必要なのは、より多くの情報だけではなく、より明確な判断です。",
+    body: "TrainBit は、長期的に信頼できる技術顧問パートナーとして、お客様が進むべき方向を明確にし、リスクを低減し、新しい技術を実際の事業価値へつなげることを支援します。",
+    cta: "TrainBit に相談する",
+  },
+};
+
+const en: Content = {
+  hero: {
+    title: "Advisory Membership",
+    subtitle: "Ongoing professional support",
+    body: [
+      "AI and Web3 are evolving quickly. What companies need is not simply more information, but clearer judgment.",
+      "Through ongoing research, industry insight, and advisory support, TrainBit helps companies understand technology trends, assess opportunities, and reduce decision-making risk.",
+    ],
+  },
+  value: {
+    title: "What We Provide",
+    cards: [
+      { title: "Industry Research", body: "Regular coverage of key trends and market developments across AI, Web3, and cryptography." },
+      { title: "Expert Insight", body: "Support in understanding the business opportunities and risks behind technology shifts." },
+      { title: "Advisory Support", body: "Limited advisory support around technology use, business planning, and risk judgment." },
+      { title: "Long-Term Perspective", body: "A steady external technical and business perspective for your organization." },
+    ],
+  },
+  plans: {
+    title: "Service Plans",
+    items: [
+      {
+        title: "Basic Membership",
+        price: "JPY 100,000 / month",
+        body: ["For companies and institutions that want to stay informed on AI, Web3, and cryptography trends."],
+        features: ["Regular industry research and member publications", "Trend briefings on AI, Web3, and cryptography", "Limited advisory consultation support"],
+        cta: "Apply to Join",
+        href: "/contact",
+        featured: true,
+      },
+      {
+        title: "Enterprise Advisory",
+        price: "Custom pricing",
+        body: ["For companies working on AI, Web3, or related innovation projects.", "Deeper advisory support can be tailored to your needs, including:"],
+        features: ["Technology and business consultation", "Project assessment and planning advice", "Security and risk analysis", "Dedicated research support", "Long-term advisory collaboration"],
+        cta: "Contact Us",
+        href: "/contact",
+      },
+    ],
+  },
+  final: {
+    title: "What companies need is not simply more information, but clearer judgment.",
+    body: "TrainBit aims to be a trusted long-term technology advisory partner, helping clients see the right direction, reduce risk, and turn new technologies into real business value.",
+    cta: "Contact TrainBit",
+  },
+};
+
+const zhTW: Content = {
+  hero: {
+    title: "會員制顧問服務",
+    subtitle: "持續獲得專業支援",
+    body: [
+      "AI 與 Web3 技術快速發展，企業真正需要的不只是更多資訊，而是更清晰的判斷。",
+      "TrainBit 透過持續性的研究、產業洞察與顧問支援，幫助企業理解技術趨勢、評估發展機會，並降低決策風險。",
+    ],
+  },
+  value: {
+    title: "我們提供什麼",
+    cards: [
+      { title: "產業研究", body: "定期整理 AI、Web3 與密碼學領域的重要趨勢與市場動態。" },
+      { title: "專業洞察", body: "幫助企業理解技術變化背後的商業機會與潛在風險。" },
+      { title: "顧問支援", body: "圍繞技術應用、業務規劃與風險判斷提供有限顧問支援。" },
+      { title: "長期視角", body: "為企業提供持續、穩定的外部技術與業務視角。" },
+    ],
+  },
+  plans: {
+    title: "服務方案",
+    items: [
+      {
+        title: "基礎會員",
+        price: "10萬日元 / 月",
+        body: ["適合希望持續掌握 AI、Web3 與密碼學領域產業動態的企業與機構。"],
+        features: ["定期產業研究與會員刊物", "AI、Web3 與密碼學趨勢解讀", "有限次數的顧問諮詢支援"],
+        cta: "申請加入",
+        href: "/contact",
+        featured: true,
+      },
+      {
+        title: "企業顧問服務",
+        price: "根據需求定制",
+        body: ["適合正在推進 AI、Web3 或相關創新專案的企業。", "根據企業需求提供更深入的顧問支援，包括："],
+        features: ["技術與業務諮詢", "專案評估與規劃建議", "安全與風險分析", "專項研究支援", "長期顧問合作"],
+        cta: "聯繫我們",
+        href: "/contact",
+      },
+    ],
+  },
+  final: {
+    title: "企業真正需要的不只是更多資訊，而是更清晰的判斷。",
+    body: "TrainBit 希望成為企業長期可信賴的技術顧問夥伴，幫助客戶看清方向、降低風險，並將新技術轉化為實際價值。",
+    cta: "聯繫 TrainBit",
+  },
+};
+
+const content: Record<Lang, Content> = { ja, en, "zh-cn": zhCN, "zh-tw": zhTW };
+const c = content[lang];
+const sectionClass = "py-20 md:py-28";
+const cardIcons = ["M5 7h14M5 12h10M5 17h14", "M12 4v16m8-8H4m12-6 4 4m-12 4-4 4", "M8 12h8m-7 4h6M6 4h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z", "M4 12a8 8 0 0 1 16 0M12 4v8l5 3"];
+---
+
+<BaseLayout title={c.hero.title} lang={lang}>
+  <section class="relative overflow-hidden bg-white dark:bg-gray-950">
+    <div class="absolute inset-y-0 left-0 w-2 bg-primary-500" aria-hidden="true"></div>
+    <div class="absolute inset-x-0 bottom-0 h-px bg-gray-200 dark:bg-gray-800" aria-hidden="true"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
+      <div class="max-w-4xl">
+        <p class="text-base font-semibold tracking-[0.22em] uppercase text-primary-500 mb-5">TrainBit Membership</p>
+        <h1 class="text-4xl md:text-6xl font-bold leading-tight text-gray-950 dark:text-white mb-6">{c.hero.title}</h1>
+        <p class="text-xl md:text-2xl text-gray-800 dark:text-gray-100 leading-relaxed mb-8">{c.hero.subtitle}</p>
+        <div class="space-y-4 text-lg text-gray-600 dark:text-gray-400 leading-8 max-w-3xl">
+          {c.hero.body.map((paragraph) => <p>{paragraph}</p>)}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class={`${sectionClass} bg-slate-50 dark:bg-gray-900`}>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-950 dark:text-white mb-14">{c.value.title}</h2>
+      <div class="grid gap-7 sm:grid-cols-2 lg:grid-cols-4">
+        {c.value.cards.map((card, index) => (
+          <article class="rounded-xl border border-slate-200 dark:border-gray-800 bg-white dark:bg-gray-950 p-7 shadow-sm">
+            <div class="mb-6 flex h-12 w-12 items-center justify-center rounded-full border border-primary-200 bg-primary-50 text-primary-600 dark:border-primary-900/60 dark:bg-primary-950/30 dark:text-primary-300">
+              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d={cardIcons[index]} />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-950 dark:text-white mb-4">{card.title}</h3>
+            <p class="text-base leading-8 text-gray-600 dark:text-gray-400">{card.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class={`${sectionClass} bg-white dark:bg-gray-950`}>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-950 dark:text-white mb-14">{c.plans.title}</h2>
+      <div class="grid gap-8 lg:grid-cols-2">
+        {c.plans.items.map((plan) => (
+          <article class:list={[
+            "rounded-xl border-l-4 border-y border-r p-8 md:p-10 shadow-sm",
+            plan.featured
+              ? "border-l-primary-500 border-y-slate-200 border-r-slate-200 bg-slate-50 dark:border-l-primary-500 dark:border-y-gray-800 dark:border-r-gray-800 dark:bg-gray-900"
+              : "border-l-slate-300 border-y-slate-200 border-r-slate-200 bg-white dark:border-l-gray-700 dark:border-y-gray-800 dark:border-r-gray-800 dark:bg-gray-900",
+          ]}>
+            <h3 class="text-2xl md:text-3xl font-bold text-gray-950 dark:text-white mb-4">{plan.title}</h3>
+            <p class="text-3xl font-bold text-primary-500 mb-7">{plan.price}</p>
+            <div class="space-y-4 text-base leading-8 text-gray-600 dark:text-gray-400 mb-8">
+              {plan.body.map((paragraph) => <p>{paragraph}</p>)}
+            </div>
+            <ul class="space-y-4 mb-9">
+              {plan.features.map((feature) => (
+                <li class="flex gap-3 text-base text-gray-700 dark:text-gray-300">
+                  <span class="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary-500/15 text-primary-500">
+                    <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.4" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="m5 13 4 4L19 7" />
+                    </svg>
+                  </span>
+                  <span>{feature}</span>
+                </li>
+              ))}
+            </ul>
+            <a href={getLocalizedPath(plan.href, lang)} class="inline-flex rounded-full bg-primary-500 px-7 py-3.5 text-base font-semibold text-white hover:bg-primary-600 transition-colors shadow-lg shadow-primary-500/20">
+              {plan.cta}
+            </a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class={`${sectionClass} bg-slate-50 dark:bg-gray-950`}>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="rounded-xl border border-slate-200 bg-white p-8 md:p-14 text-gray-950 shadow-sm dark:border-gray-800 dark:bg-gray-900 dark:text-white">
+        <h2 class="text-3xl md:text-5xl font-bold leading-tight mb-6">{c.final.title}</h2>
+        <p class="text-lg text-gray-600 dark:text-gray-400 leading-8 max-w-3xl mb-9">{c.final.body}</p>
+        <a href={getLocalizedPath("/contact", lang)} class="inline-flex rounded-full bg-primary-500 px-7 py-3.5 text-base font-semibold text-white hover:bg-primary-600 transition-colors">
+          {c.final.cta}
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
