@@ -20,18 +20,6 @@ const { lang } = Astro.props;
         {t(lang, "contact.intro")}
       </p>
 
-      <!-- Draft load button (hidden until draft exists) -->
-      <div id="draft-banner" class="hidden mb-6 flex items-center gap-3">
-        <button
-          id="load-draft-btn"
-          type="button"
-          class="px-4 py-2 rounded-lg bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-sm font-medium hover:bg-gray-300 dark:hover:bg-gray-600 transition-all"
-        >
-          {t(lang, "contact.draft.load")}
-        </button>
-        <span class="text-sm text-gray-500 dark:text-gray-400">{t(lang, "contact.draft.hint")}</span>
-      </div>
-
       <!-- Status messages -->
       <div id="msg-success" class="hidden mb-6 p-4 rounded-lg bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-700 text-green-800 dark:text-green-300 text-sm">
         {t(lang, "contact.success")}
@@ -147,6 +135,18 @@ const { lang } = Astro.props;
         >
           {t(lang, "contact.submit")}
         </button>
+
+        <!-- Draft load inline hint -->
+        <div id="draft-banner" class="hidden flex items-center gap-1.5 text-sm text-gray-400 dark:text-gray-500">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+          <span>{t(lang, "contact.draft.hint")} </span><button
+            id="load-draft-btn"
+            type="button"
+            class="border-b border-dashed border-gray-400 dark:border-gray-500 hover:text-gray-600 dark:hover:text-gray-300 transition-colors cursor-pointer bg-transparent p-0"
+          >{t(lang, "contact.draft.load")}</button>
+        </div>
       </form>
     </div>
   </section>
