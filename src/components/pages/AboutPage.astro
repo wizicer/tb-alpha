@@ -10,20 +10,20 @@ interface Props {
 const { lang } = Astro.props;
 
 const infoItemsBefore = [
-  { label: t(lang, "about.corpnum.label"), value: t(lang, "about.corpnum") },
   { label: t(lang, "about.name.label"), value: t(lang, "about.name") },
   { label: t(lang, "about.representative.label"), value: t(lang, "about.representative") },
   { label: t(lang, "about.capital.label"), value: t(lang, "about.capital") },
   { label: t(lang, "about.established.label"), value: t(lang, "about.established") },
   { label: t(lang, "about.address.label"), value: t(lang, "about.address") },
-  { label: t(lang, "about.phone.label"), value: t(lang, "about.phone") },
 ];
 
 const emailLabel = t(lang, "about.email.label");
 
 const infoItemsAfter = [
-  { label: t(lang, "about.hours.label"), value: t(lang, "about.hours") },
-  { label: t(lang, "about.holidays.label"), value: t(lang, "about.holidays") },
+  {
+    label: t(lang, "about.hours.label"),
+    value: `${t(lang, "about.hours")} / ${t(lang, "about.holidays")}`,
+  },
 ];
 
 const purposes = [
