@@ -155,7 +155,7 @@ const { lang } = Astro.props;
 <script>
   const DRAFT_KEY = "contact_draft";
   const SENT_KEY = "contact_sent";
-  const WEBHOOK_URL = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=6d03ea32-bc5b-4b06-9665-8b33a413eb79";
+  const WEBHOOK_URL = "https://trainbit-contact-form.sutu.workers.dev";
 
   const form = document.getElementById("contact-form") as HTMLFormElement;
   const submitBtn = document.getElementById("submit-btn") as HTMLButtonElement;
@@ -226,28 +226,15 @@ const { lang } = Astro.props;
     submitBtn.disabled = true;
 
     const data = getFormData();
-    const lines = [
-      `公司：${data.company || "-"}`,
-      `姓名：${data.name || "-"}`,
-      `邮箱：${data.email || "-"}`,
-      `电话：${data.phone || "-"}`,
-      `类别：${data.category || "-"}`,
-      `内容：${data.message || "-"}`,
-    ];
-
-    const payload = {
-      msgtype: "text",
-      text: { content: "【TrainBit 官网咨询】\n" + lines.join("\n") },
-    };
 
     try {
       const res = await fetch(WEBHOOK_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
+        body: JSON.stringify(data),
       });
       const json = await res.json();
-      if (res.ok && json.errcode === 0) {
+      if (res.ok && json.success === true) {
         localStorage.setItem(SENT_KEY, JSON.stringify(data));
         localStorage.removeItem(DRAFT_KEY);
         form.reset();
