@@ -130,6 +130,10 @@ const zhCN = {
   "contact.privacy.required": "（必填）",
   "contact.submit": "提交咨询",
   "contact.privacy.link": "隐私政策",
+  "contact.success": "您的和询已成功发送！我们会尽快与您联系。",
+  "contact.error": "暂时无法连接，请保留好信息稍后再试。",
+  "contact.draft.load": "载入上次已发送的内容",
+  "contact.draft.hint": "上次发送的内容可以载入",
   "privacy.title": "隐私政策",
   "privacy.intro": "TrainBit 合同会社（以下简称“本公司”）深刻认识到保护客户个人信息的重要性，遵守个人信息保护相关法律法规，并根据以下隐私政策努力进行适当处理与保护。",
   "privacy.s1.title": "1. 收集的个人信息",
@@ -369,6 +373,10 @@ export const translations = {
     "contact.privacy.required": "（必須）",
     "contact.submit": "相談を送信する",
     "contact.privacy.link": "プライバシーポリシー",
+    "contact.success": "お問い合わせを送信しました。なるべく早くご連絡いたします。",
+    "contact.error": "送信に失敗しました。内容を保存してしばらくたってから再度お試しください。",
+    "contact.draft.load": "前回送信内容を読み込む",
+    "contact.draft.hint": "以前送信した内容を読み込めます",
 
     // Privacy Policy
     "privacy.title": "プライバシーポリシー",
@@ -596,6 +604,10 @@ export const translations = {
     "contact.privacy.required": " (Required)",
     "contact.submit": "Submit Inquiry",
     "contact.privacy.link": "Privacy Policy",
+    "contact.success": "Your inquiry has been sent successfully! We will contact you as soon as possible.",
+    "contact.error": "Unable to connect at this time. Please keep your information and try again later.",
+    "contact.draft.load": "Load last sent content",
+    "contact.draft.hint": "You have previously sent content available to load",
 
     // Privacy Policy
     "privacy.title": "Privacy Policy",
