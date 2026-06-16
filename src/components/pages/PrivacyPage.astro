@@ -55,10 +55,32 @@ const sections = [
           <div class="text-gray-600 dark:text-gray-400 text-sm space-y-1">
             <p>{t(lang, "privacy.s7.company")}</p>
             <p>{t(lang, "privacy.s7.address")}</p>
-            <p>{t(lang, "privacy.s7.email")}</p>
+            <p>
+              {t(lang, "privacy.s7.email")}<span
+                class="protected-email"
+                data-u="hello"
+                data-d="trainbit"
+                data-t="co.jp"
+              ><noscript>hello [at] trainbit.co.jp</noscript></span>
+            </p>
           </div>
         </div>
       </div>
     </div>
   </section>
 </BaseLayout>
+
+<script>
+  document.querySelectorAll<HTMLElement>(".protected-email").forEach((el) => {
+    const u = el.dataset.u ?? "";
+    const d = el.dataset.d ?? "";
+    const t = el.dataset.t ?? "";
+    const email = `${u}@${d}.${t}`;
+    const a = document.createElement("a");
+    a.href = `mailto:${email}`;
+    a.textContent = email;
+    a.className = "hover:underline";
+    el.innerHTML = "";
+    el.appendChild(a);
+  });
+</script>
