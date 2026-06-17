@@ -126,7 +126,7 @@ const zhCN = {
   "contact.privacy.required": "（必填）",
   "contact.submit": "提交咨询",
   "contact.privacy.link": "隐私政策",
-  "contact.success": "您的和询已成功发送！我们会尽快与您联系。",
+  "contact.success": "您的咨询已成功发送！我们会尽快与您联系。",
   "contact.error": "暂时无法连接，请保留好信息稍后再试。",
   "contact.draft.load": "载入上次已发送的内容",
   "contact.draft.hint": "上次发送的内容可以载入，",
